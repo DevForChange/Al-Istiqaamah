@@ -14,6 +14,36 @@
             --white: #fff;
         }
         
+        /* Styles pour le sélecteur de langue */
+        .language-selector {
+			position: relative; /* Position relative au lieu de fixed */
+			top: auto;
+			right: auto;
+			z-index: 1000;
+			display: flex;
+			gap: 3px;
+			background-color: transparent; /* Fond transparent pour s'intégrer à la navigation */
+			padding: 0;
+			border-radius: 4px;
+			box-shadow: none; /* Enlever l'ombre pour mieux s'intégrer */
+			margin-left: auto; /* Ceci pousse le sélecteur vers la droite quand en LTR */
+		}
+		html[dir="rtl"] .language-selector {
+			margin-left: 0;
+			margin-right: auto; /* Ceci pousse le sélecteur vers la gauche quand en RTL */
+		}
+        
+        .language-btn {
+			/* Réduire légèrement la taille des boutons */
+			padding: 3px 8px;
+			font-size: 0.85rem;
+		}
+        
+        .language-btn:hover, .language-btn.active {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+        
         * {
             margin: 0;
             padding: 0;
@@ -44,16 +74,41 @@
         }
         
         .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-        }
+			display: flex;
+			align-items: center;
+			padding: 10px 0;
+			flex-wrap: wrap;
+		}
+		/* Ajuster la structure de la navigation pour les langues RTL */
+		html[dir="rtl"] .nav-container {
+			flex-direction: row-reverse; /* Inverser l'ordre des éléments */
+		}
         
         .logo {
-            display: flex;
-            align-items: center;
-        }
+			margin-right: 0; /* Supprimer la marge */
+			display: flex;
+			align-items: center;
+		}
+
+		html[dir="rtl"] .logo {
+			margin-right: 0;
+			margin-left: 30px; /* Espace entre le logo et le menu en RTL */
+		}
+		.logo h1 {
+			font-size: 1.5rem;
+			color: var(--primary-color);
+			margin: 0; /* Supprimer les marges du titre */
+		}
+		nav {
+			margin-left: 30px; /* Ajouter une marge à gauche de la navigation */
+			flex-grow: 1;
+			display: flex;
+			justify-content: flex-start;
+		}
+
+		html[dir="rtl"] nav {
+			justify-content: flex-end; /* Aligner les éléments de navigation à droite en RTL */
+		}
         
         .logo img {
             height: 60px;
@@ -301,7 +356,7 @@
         
         .progress-fill {
             height: 100%;
-            width: 5%; /* Update this based on actual progress */
+            width: 0.033%;
             background-color: var(--primary-color);
             border-radius: 15px;
         }
@@ -416,235 +471,587 @@
     </style>
 </head>
 <body>
+    <!-- Sélecteur de langue -->
+    
+
     <header>
-        <div class="container nav-container">
-            <div class="logo">
-                <img src="images/logo.jpg" alt="Logo Mosquée Al Istiqaamah">
-                <h1>Mosquée Al Istiqaamah</h1>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="#accueil">Accueil</a></li>
-                    <li><a href="#projet">Le Projet</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#faire-un-don">Faire un don</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+    <div class="container nav-container">
+        <div class="logo">
+            <img src="images/logo.jpg" alt="Logo Mosquée Al Istiqaamah">
+            <h1 class="lang-fr">Mosquée Al Istiqaamah</h1>
+            <h1 class="lang-en" style="display: none;">Al Istiqaamah Mosque</h1>
+            <h1 class="lang-ar" style="display: none;" dir="rtl">مسجد الاستقامة</h1>
+            <h1 class="lang-ur" style="display: none;" dir="rtl">مسجد استقامت</h1>
+            <h1 class="lang-bn" style="display: none;">আল ইস্তিক্বামাহ মসজিদ</h1>
         </div>
-    </header>
+        <nav>
+			<ul class="lang-fr">
+				<li><a href="#accueil">Accueil</a></li>
+				<li><a href="#projet">Le Projet</a></li>
+				<li><a href="#services">Services</a></li>
+				<li><a href="#faire-un-don">Faire un don</a></li>
+				<li><a href="#contact">Contact</a></li>
+			</ul>
+			<ul class="lang-en" style="display: none;">
+				<li><a href="#accueil">Home</a></li>
+				<li><a href="#projet">The Project</a></li>
+				<li><a href="#services">Services</a></li>
+				<li><a href="#faire-un-don">Donate</a></li>
+				<li><a href="#contact">Contact</a></li>
+			</ul>
+			<ul class="lang-ar" style="display: none;" dir="rtl">
+				<li><a href="#accueil">الرئيسية</a></li>
+				<li><a href="#projet">المشروع</a></li>
+				<li><a href="#services">الخدمات</a></li>
+				<li><a href="#faire-un-don">تبرع</a></li>
+				<li><a href="#contact">اتصل بنا</a></li>
+			</ul>
+			<ul class="lang-ur" style="display: none;" dir="rtl">
+				<li><a href="#accueil">ہوم</a></li>
+				<li><a href="#projet">منصوبہ</a></li>
+				<li><a href="#services">خدمات</a></li>
+				<li><a href="#faire-un-don">عطیہ دیں</a></li>
+				<li><a href="#contact">رابطہ</a></li>
+			</ul>
+			<ul class="lang-bn" style="display: none;">
+				<li><a href="#accueil">হোম</a></li>
+				<li><a href="#projet">প্রকল্প</a></li>
+				<li><a href="#services">সেবাসমূহ</a></li>
+				<li><a href="#faire-un-don">দান করুন</a></li>
+				<li><a href="#contact">যোগাযোগ</a></li>
+			</ul>
+		</nav>
+        <div class="language-selector">
+            <button class="language-btn active" onclick="changeLanguage('fr')">FR</button>
+            <button class="language-btn" onclick="changeLanguage('en')">EN</button>
+            <button class="language-btn" onclick="changeLanguage('ar')">العربية</button>
+            <button class="language-btn" onclick="changeLanguage('ur')">اردو</button>
+            <button class="language-btn" onclick="changeLanguage('bn')">বাংলা</button>
+        </div>
+    </div>
+</header>
 
     <section class="hero" id="accueil">
-        <div class="container">
-            <h2>Mosquée Al Istiqaamah</h2>
-            <p>Aidez-nous à construire la grande mosquée et institut d'Aubervilliers, un lieu de prière, d'apprentissage et de rassemblement pour notre communauté.</p>
-            <a href="#faire-un-don" class="btn">Faire un don</a>
-        </div>
-    </section>
+    <div class="container">
+        <h2 class="lang-fr">Mosquée Al Istiqaamah</h2>
+        <h2 class="lang-en" style="display: none;">Al Istiqaamah Mosque</h2>
+        <h2 class="lang-ar" style="display: none;" dir="rtl">مسجد الاستقامة</h2>
+        <h2 class="lang-ur" style="display: none;" dir="rtl">مسجد استقامت</h2>
+        <h2 class="lang-bn" style="display: none;">আল ইস্তিক্বামাহ মসজিদ</h2>
+        
+        <p class="lang-fr">Aidez-nous à construire la grande mosquée et institut d'Aubervilliers, un lieu de prière, d'apprentissage et de rassemblement pour notre communauté.</p>
+        <p class="lang-en" style="display: none;">Help us build the great mosque and institute of Aubervilliers, a place of prayer, learning and gathering for our community.</p>
+        <p class="lang-ar" style="display: none;" dir="rtl">ساعدونا في بناء المسجد الكبير ومعهد أوبرفيلييه، مكان للصلاة والتعلم والتجمع لمجتمعنا.</p>
+        <p class="lang-ur" style="display: none;" dir="rtl">آبرویلیے کی بڑی مسجد اور ادارے کی تعمیر میں ہماری مدد کریں، جو ہماری کمیونٹی کے لیے نماز، تعلیم اور اجتماع کی جگہ ہے۔</p>
+        <p class="lang-bn" style="display: none;">অবারভিলিয়ার্সের বিশাল মসজিদ এবং ইনস্টিটিউট নির্মাণে আমাদের সাহায্য করুন, যা আমাদের সম্প্রদায়ের জন্য প্রার্থনা, শিক্ষা এবং সমাবেশের স্থান।</p>
+        
+        <a href="#faire-un-don" class="btn lang-fr">Faire un don</a>
+        <a href="#faire-un-don" class="btn lang-en" style="display: none;">Donate</a>
+        <a href="#faire-un-don" class="btn lang-ar" style="display: none;" dir="rtl">تبرع</a>
+        <a href="#faire-un-don" class="btn lang-ur" style="display: none;" dir="rtl">عطیہ دیں</a>
+        <a href="#faire-un-don" class="btn lang-bn" style="display: none;">দান করুন</a>
+    </div>
+</section>
 
     <section class="about" id="projet">
-        <div class="container">
-            <div class="section-heading">
-                <h2>Notre Projet</h2>
-                <p>Bâtir un lieu qui reflète les valeurs de l'Islam : bienveillance, solidarité et fraternité.</p>
+    <div class="container">
+        <div class="section-heading">
+            <h2 class="lang-fr">Notre Projet</h2>
+            <h2 class="lang-en" style="display: none;">Our Project</h2>
+            <h2 class="lang-ar" style="display: none;" dir="rtl">مشروعنا</h2>
+            <h2 class="lang-ur" style="display: none;" dir="rtl">ہمارا منصوبہ</h2>
+            <h2 class="lang-bn" style="display: none;">আমাদের প্রকল্প</h2>
+            
+            <p class="lang-fr">Bâtir un lieu qui reflète les valeurs de l'Islam : bienveillance, solidarité et fraternité.</p>
+            <p class="lang-en" style="display: none;">Building a place that reflects the values of Islam: kindness, solidarity and brotherhood.</p>
+            <p class="lang-ar" style="display: none;" dir="rtl">بناء مكان يعكس قيم الإسلام: الرحمة والتضامن والأخوة.</p>
+            <p class="lang-ur" style="display: none;" dir="rtl">ایک ایسی جگہ بنانا جو اسلام کی اقدار کی عکاسی کرے: مہربانی، یکجہتی اور بھائی چارگی۔</p>
+            <p class="lang-bn" style="display: none;">ইসলামের মূল্যবোধ প্রতিফলিত করে এমন একটি স্থান নির্মাণ: দয়া, ঐক্য এবং ভ্রাতৃত্ব।</p>
+        </div>
+        <div class="about-content">
+            <div class="about-text">
+                <p class="lang-fr">À l'occasion de l'ouverture de la nouvelle grande mosquée et de son institut à Aubervilliers, nous avons à cœur de vous offrir un lieu de prière, d'apprentissage et de rassemblement à la hauteur de vos attentes et de vos besoins.</p>
+                <p class="lang-en" style="display: none;">On the occasion of the opening of the new large mosque and its institute in Aubervilliers, we are committed to offering you a place of prayer, learning and gathering that meets your expectations and needs.</p>
+                <p class="lang-ar" style="display: none;" dir="rtl">بمناسبة افتتاح المسجد الكبير الجديد ومعهده في أوبرفيلييه، نحن ملتزمون بتقديم مكان للصلاة والتعلم والتجمع يلبي توقعاتكم واحتياجاتكم.</p>
+                <p class="lang-ur" style="display: none;" dir="rtl">آبرویلیے میں نئی بڑی مسجد اور اس کے ادارے کے افتتاح کے موقع پر، ہم آپ کی توقعات اور ضروریات کو پورا کرنے والی نماز، تعلیم اور اجتماع کی جگہ فراہم کرنے کے لیے پرعزم ہیں۔</p>
+                <p class="lang-bn" style="display: none;">অবারভিলিয়ার্সে নতুন বড় মসজিদ এবং এর ইনস্টিটিউটের উদ্বোধনের অবসরে, আমরা আপনার প্রত্যাশা এবং প্রয়োজন পূরণ করে এমন একটি প্রার্থনা, শিক্ষা এবং সমাবেশের স্থান প্রদান করতে প্রতিশ্রুতিবদ্ধ।</p>
+                
+                <p class="lang-fr">L'aménagement des locaux nécessite des fonds afin de les rendre plus accueillants, fonctionnels et adaptés à la pratique de notre foi. Votre contribution, qu'elle soit grande ou modeste, jouera un rôle essentiel dans le développement des infrastructures de la mosquée et de l'institut.</p>
+                <p class="lang-en" style="display: none;">The development of the premises requires funds to make them more welcoming, functional and adapted to the practice of our faith. Your contribution, whether large or modest, will play an essential role in the development of the mosque and institute's infrastructure.</p>
+                <p class="lang-ar" style="display: none;" dir="rtl">يتطلب تطوير المبنى أموالًا لجعله أكثر ترحيبًا وعملية وملائمًا لممارسة ديننا. ستلعب مساهمتك، سواء كانت كبيرة أو متواضعة، دورًا أساسيًا في تطوير البنية التحتية للمسجد والمعهد.</p>
+                <p class="lang-ur" style="display: none;" dir="rtl">عمارت کی ترقی کے لیے فنڈز کی ضرورت ہے تاکہ انہیں زیادہ خوش آئند، فعال اور ہمارے ایمان کی مشق کے لیے موزوں بنایا جا سکے۔ آپ کا تعاون، چاہے وہ بڑا ہو یا معمولی، مسجد اور ادارے کے بنیادی ڈھانچے کی ترقی میں اہم کردار ادا کرے گا۔</p>
+                <p class="lang-bn" style="display: none;">প্রাঙ্গণ উন্নয়নের জন্য তহবিল প্রয়োজন যাতে সেগুলি আরও স্বাগত জানানো, কার্যকরী এবং আমাদের ধর্মচর্চার জন্য উপযুক্ত করা যায়। আপনার অবদান, তা বড় বা মাঝারি হোক না কেন, মসজিদ এবং ইনস্টিটিউটের অবকাঠামো উন্নয়নে একটি অপরিহার্য ভূমিকা পালন করবে।</p>
+                
+                <p class="lang-fr">Votre générosité contribuera également à faciliter l'organisation d'événements et d'activités bénéfiques à toute la communauté.</p>
+                <p class="lang-en" style="display: none;">Your generosity will also help facilitate the organization of events and activities beneficial to the entire community.</p>
+                <p class="lang-ar" style="display: none;" dir="rtl">سيساهم كرمكم أيضًا في تسهيل تنظيم الفعاليات والأنشطة المفيدة للمجتمع بأكمله.</p>
+                <p class="lang-ur" style="display: none;" dir="rtl">آپ کی سخاوت پوری کمیونٹی کے لیے فائدہ مند تقریبات اور سرگرمیوں کے انعقاد کو بھی آسان بنانے میں مدد کرے گی۔</p>
+                <p class="lang-bn" style="display: none;">আপনার উদারতা সমগ্র সম্প্রদায়ের জন্য উপকারী অনুষ্ঠান এবং কার্যক্রম আয়োজনে সহায়তা করবে।</p>
             </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>À l'occasion de l'ouverture de la nouvelle grande mosquée et de son institut à Aubervilliers, nous avons à cœur de vous offrir un lieu de prière, d'apprentissage et de rassemblement à la hauteur de vos attentes et de vos besoins.</p>
-                    <p>L'aménagement des locaux nécessite des fonds afin de les rendre plus accueillants, fonctionnels et adaptés à la pratique de notre foi. Votre contribution, qu'elle soit grande ou modeste, jouera un rôle essentiel dans le développement des infrastructures de la mosquée et de l'institut.</p>
-                    <p>Votre générosité contribuera également à faciliter l'organisation d'événements et d'activités bénéfiques à toute la communauté.</p>
-                </div>
-                <div class="about-image">
-                    <div style="background-color: #f5f5f5; border-radius: 10px; padding: 30px; text-align: center; height: 100%;">
-                        <h3 style="margin-bottom: 20px; color: var(--primary-color);">Notre Future Mosquée</h3>
-                        <p>Le projet de la mosquée Al Istiqaamah est actuellement en phase de collecte de fonds pour l'acquisition d'un local. Des images et rendus 3D seront disponibles une fois le local acquis.</p>
-                        <p style="margin-top: 20px; font-style: italic;">Participez à notre projet et devenez acteur de cette œuvre pieuse !</p>
-                    </div>
+            <div class="about-image">
+                <div style="background-color: #f5f5f5; border-radius: 10px; padding: 30px; text-align: center; height: 100%;">
+                    <h3 class="lang-fr" style="margin-bottom: 20px; color: var(--primary-color);">Notre Future Mosquée</h3>
+                    <h3 class="lang-en" style="margin-bottom: 20px; color: var(--primary-color); display: none;">Our Future Mosque</h3>
+                    <h3 class="lang-ar" style="margin-bottom: 20px; color: var(--primary-color); display: none;" dir="rtl">مسجدنا المستقبلي</h3>
+                    <h3 class="lang-ur" style="margin-bottom: 20px; color: var(--primary-color); display: none;" dir="rtl">ہماری مستقبل کی مسجد</h3>
+                    <h3 class="lang-bn" style="margin-bottom: 20px; color: var(--primary-color); display: none;">আমাদের ভবিষ্যত মসজিদ</h3>
+                    
+                    <p class="lang-fr">Le projet de la mosquée Al Istiqaamah est actuellement en phase de collecte de fonds pour l'acquisition d'un local. Des images et rendus 3D seront disponibles une fois le local acquis.</p>
+                    <p class="lang-en" style="display: none;">The Al Istiqaamah mosque project is currently in the fundraising phase for the acquisition of premises. Images and 3D renderings will be available once the premises are acquired.</p>
+                    <p class="lang-ar" style="display: none;" dir="rtl">مشروع مسجد الاستقامة حاليًا في مرحلة جمع التبرعات لشراء المبنى. ستتوفر الصور والتصاميم ثلاثية الأبعاد بمجرد الحصول على المبنى.</p>
+                    <p class="lang-ur" style="display: none;" dir="rtl">مسجد استقامت کا پروجیکٹ فی الحال عمارت کی خریداری کے لیے فنڈ ریزنگ کے مرحلے میں ہے۔ عمارت کے حصول کے بعد تصاویر اور تھری ڈی رینڈرنگز دستیاب ہوں گی۔</p>
+                    <p class="lang-bn" style="display: none;">আল ইস্তিক্বামাহ মসজিদ প্রকল্পটি বর্তমানে প্রাঙ্গণ অধিগ্রহণের জন্য তহবিল সংগ্রহের পর্যায়ে রয়েছে। প্রাঙ্গণ অর্জন করা হলে ছবি এবং 3D রেন্ডারিং পাওয়া যাবে।</p>
+                    
+                    <p class="lang-fr" style="margin-top: 20px; font-style: italic;">Participez à notre projet et devenez acteur de cette œuvre pieuse !</p>
+                    <p class="lang-en" style="margin-top: 20px; font-style: italic; display: none;">Participate in our project and become part of this pious work!</p>
+                    <p class="lang-ar" style="margin-top: 20px; font-style: italic; display: none;" dir="rtl">شارك في مشروعنا وكن جزءًا من هذا العمل الصالح!</p>
+                    <p class="lang-ur" style="margin-top: 20px; font-style: italic; display: none;" dir="rtl">ہمارے منصوبے میں شرکت کریں اور اس نیک کام کا حصہ بنیں!</p>
+                    <p class="lang-bn" style="margin-top: 20px; font-style: italic; display: none;">আমাদের প্রকল্পে অংশ নিন এবং এই পুণ্যময় কাজের অংশ হোন!</p>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <section class="project-details">
-        <div class="container">
-            <div class="section-heading">
-                <h2>Détails du Projet</h2>
-                <p>Ensemble, nous pouvons réaliser ce projet ambitieux pour notre communauté.</p>
+    <div class="container">
+        <div class="section-heading">
+            <h2 class="lang-fr">Détails du Projet</h2>
+            <h2 class="lang-en" style="display: none;">Project Details</h2>
+            <h2 class="lang-ar" style="display: none;" dir="rtl">تفاصيل المشروع</h2>
+            <h2 class="lang-ur" style="display: none;" dir="rtl">منصوبے کی تفصیلات</h2>
+            <h2 class="lang-bn" style="display: none;">প্রকল্পের বিবরণ</h2>
+            
+            <p class="lang-fr">Ensemble, nous pouvons réaliser ce projet ambitieux pour notre communauté.</p>
+            <p class="lang-en" style="display: none;">Together, we can accomplish this ambitious project for our community.</p>
+            <p class="lang-ar" style="display: none;" dir="rtl">معًا، يمكننا تحقيق هذا المشروع الطموح لمجتمعنا.</p>
+            <p class="lang-ur" style="display: none;" dir="rtl">مل کر، ہم اپنی کمیونٹی کے لیے اس پرعزم منصوبے کو پورا کر سکتے ہیں۔</p>
+            <p class="lang-bn" style="display: none;">একসাথে, আমরা আমাদের সম্প্রদায়ের জন্য এই উচ্চাভিলাষী প্রকল্প সম্পন্ন করতে পারি।</p>
+        </div>
+        <div class="stats-container">
+            <div class="stat-box">
+                <h3>5711 m²</h3>
+                <p class="lang-fr">Superficie totale</p>
+                <p class="lang-en" style="display: none;">Total area</p>
+                <p class="lang-ar" style="display: none;" dir="rtl">المساحة الكلية</p>
+                <p class="lang-ur" style="display: none;" dir="rtl">کل رقبہ</p>
+                <p class="lang-bn" style="display: none;">মোট এলাকা</p>
             </div>
-            <div class="stats-container">
-                <div class="stat-box">
-                    <h3>5711 m²</h3>
-                    <p>Superficie totale</p>
-                </div>
-                <div class="stat-box">
-                    <h3>160 €</h3>
-                    <p>Coût par m²</p>
-                </div>
-                <div class="stat-box">
-                    <h3>913 760 €</h3>
-                    <p>Coût d'achat du local</p>
-                </div>
-                <div class="stat-box">
-                    <h3>2,5 M €</h3>
-                    <p>Coût total avec aménagements</p>
-                </div>
+            <div class="stat-box">
+                <h3>160 €</h3>
+                <p class="lang-fr">Coût par m²</p>
+                <p class="lang-en" style="display: none;">Cost per m²</p>
+                <p class="lang-ar" style="display: none;" dir="rtl">التكلفة لكل م²</p>
+                <p class="lang-ur" style="display: none;" dir="rtl">فی مربع میٹر لاگت</p>
+                <p class="lang-bn" style="display: none;">প্রতি বর্গমিটার খরচ</p>
             </div>
-            <div class="progress-container">
-                <div class="progress-stats">
-                    <span>Fonds collectés : 832 €</span>
-                    <span>Objectif : 2 500 000 €</span>
-                </div>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 0.033%;"></div>
-                </div>
+            <div class="stat-box">
+                <h3>913 760 €</h3>
+                <p class="lang-fr">Coût d'achat du local</p>
+                <p class="lang-en" style="display: none;">Purchase cost</p>
+                <p class="lang-ar" style="display: none;" dir="rtl">تكلفة شراء المبنى</p>
+                <p class="lang-ur" style="display: none;" dir="rtl">خریداری کی لاگت</p>
+                <p class="lang-bn" style="display: none;">ক্রয় মূল্য</p>
             </div>
-            <div class="highlighted-text">
-                <p>Le Prophète ﷺ a dit : « Celui qui construit une mosquée dans laquelle on fait le rappel du nom d'Allah, Allah lui construit une maison au Paradis. » (Rapporté par Ibn Maja dans ses Sounan n°735 et authentifié par Cheikh Albani)</p>
+            <div class="stat-box">
+                <h3>2,5 M €</h3>
+                <p class="lang-fr">Coût total avec aménagements</p>
+                <p class="lang-en" style="display: none;">Total cost with development</p>
+                <p class="lang-ar" style="display: none;" dir="rtl">التكلفة الإجمالية مع التطوير</p>
+                <p class="lang-ur" style="display: none;" dir="rtl">ترقی کے ساتھ کل لاگت</p>
+                <p class="lang-bn" style="display: none;">উন্নয়ন সহ মোট খরচ</p>
             </div>
         </div>
-    </section>
+        <div class="progress-container">
+            <div class="progress-stats">
+                <span class="lang-fr">Fonds collectés : 832 €</span>
+                <span class="lang-en" style="display: none;">Funds raised: 832 €</span>
+                <span class="lang-ar" style="display: none;" dir="rtl">الأموال التي تم جمعها: 832 €</span>
+                <span class="lang-ur" style="display: none;" dir="rtl">اکٹھا کیا گیا فنڈ: 832 €</span>
+                <span class="lang-bn" style="display: none;">সংগৃহীত অর্থ: 832 €</span>
+                
+                <span class="lang-fr">Objectif : 2 500 000 €</span>
+                <span class="lang-en" style="display: none;">Goal: 2,500,000 €</span>
+                <span class="lang-ar" style="display: none;" dir="rtl">الهدف: 2,500,000 €</span>
+                <span class="lang-ur" style="display: none;" dir="rtl">ہدف: 2,500,000 €</span>
+                <span class="lang-bn" style="display: none;">লক্ষ্য: 2,500,000 €</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 0.033%;"></div>
+            </div>
+        </div>
+        <div class="highlighted-text">
+            <p class="lang-fr">Le Prophète ﷺ a dit : « Celui qui construit une mosquée dans laquelle on fait le rappel du nom d'Allah, Allah lui construit une maison au Paradis. » (Rapporté par Ibn Maja dans ses Sounan n°735 et authentifié par Cheikh Albani)</p>
+            <p class="lang-en" style="display: none;">The Prophet ﷺ said: "Whoever builds a mosque in which the name of Allah is remembered, Allah will build for him a house in Paradise." (Reported by Ibn Maja in his Sunan No. 735 and authenticated by Sheikh Albani)</p>
+            <p class="lang-ar" style="display: none;" dir="rtl">قال النبي ﷺ: "من بنى مسجدًا يُذكر فيه اسم الله، بنى الله له بيتًا في الجنة." (رواه ابن ماجه في سننه رقم 735 وصححه الشيخ الألباني)</p>
+            <p class="lang-ur" style="display: none;" dir="rtl">نبی ﷺ نے فرمایا: "جو کوئی ایسی مسجد بناتا ہے جس میں اللہ کے نام کا ذکر کیا جاتا ہے، اللہ اس کے لیے جنت میں ایک گھر بنائے گا۔" (ابن ماجہ کی سنن میں نمبر 735 پر روایت کیا گیا اور شیخ البانی نے اسے صحیح قرار دیا)</p>
+            <p class="lang-bn" style="display: none;">নবী ﷺ বলেছেন: "যে কেউ একটি মসজিদ নির্মাণ করে যেখানে আল্লাহর নাম স্মরণ করা হয়, আল্লাহ তার জন্য জান্নাতে একটি ঘর নির্মাণ করবেন।" (ইবনে মাজার সুনানে ৭৩৫ নম্বরে বর্ণিত এবং শায়খ আলবানী দ্বারা প্রমাণিত)</p>
+        </div>
+    </div>
+</section>
 
     <section class="services" id="services">
-        <div class="container">
-            <div class="section-heading">
-                <h2>Nos Services</h2>
-                <p>La mosquée Al Istiqaamah offrira divers services pour répondre aux besoins de notre communauté.</p>
+    <div class="container">
+        <div class="section-heading">
+            <h2 class="lang-fr">Nos Services</h2>
+            <h2 class="lang-en" style="display: none;">Our Services</h2>
+            <h2 class="lang-ar" style="display: none;" dir="rtl">خدماتنا</h2>
+            <h2 class="lang-ur" style="display: none;" dir="rtl">ہماری خدمات</h2>
+            <h2 class="lang-bn" style="display: none;">আমাদের সেবাসমূহ</h2>
+            
+            <p class="lang-fr">La mosquée Al Istiqaamah offrira divers services pour répondre aux besoins de notre communauté.</p>
+            <p class="lang-en" style="display: none;">The Al Istiqaamah mosque will offer various services to meet the needs of our community.</p>
+            <p class="lang-ar" style="display: none;" dir="rtl">سيقدم مسجد الاستقامة خدمات متنوعة لتلبية احتياجات مجتمعنا.</p>
+            <p class="lang-ur" style="display: none;" dir="rtl">مسجد استقامت ہماری کمیونٹی کی ضروریات کو پورا کرنے کے لیے مختلف خدمات پیش کرے گی۔</p>
+            <p class="lang-bn" style="display: none;">আল ইস্তিক্বামাহ মসজিদ আমাদের সম্প্রদায়ের চাহিদা পূরণের জন্য বিভিন্ন সেবা প্রদান করবে।</p>
+        </div>
+        <div class="services-container">
+            <div class="service-card">
+                <h3 class="lang-fr">Prières quotidiennes</h3>
+                <h3 class="lang-en" style="display: none;">Daily prayers</h3>
+                <h3 class="lang-ar" style="display: none;" dir="rtl">الصلوات اليومية</h3>
+                <h3 class="lang-ur" style="display: none;" dir="rtl">روزانہ کی نمازیں</h3>
+                <h3 class="lang-bn" style="display: none;">দৈনিক নামাজ</h3>
+                
+                <p class="lang-fr">Un espace dédié aux cinq prières quotidiennes et à la prière du vendredi dans un environnement paisible et accueillant.</p>
+                <p class="lang-en" style="display: none;">A space dedicated to the five daily prayers and Friday prayer in a peaceful and welcoming environment.</p>
+                <p class="lang-ar" style="display: none;" dir="rtl">مساحة مخصصة للصلوات الخمس اليومية وصلاة الجمعة في بيئة هادئة ومرحبة.</p>
+                <p class="lang-ur" style="display: none;" dir="rtl">پانچ روزانہ نمازوں اور جمعہ کی نماز کے لیے پرسکون اور خوش آئند ماحول میں ایک مخصوص جگہ۔</p>
+                <p class="lang-bn" style="display: none;">পাঁচ দৈনিক নামাজ এবং জুমার নামাজের জন্য একটি শান্তিপূর্ণ ও স্বাগত জানানো পরিবেশে একটি নিবেদিত স্থান।</p>
             </div>
-            <div class="services-container">
-                <div class="service-card">
-                    <h3>Prières quotidiennes</h3>
-                    <p>Un espace dédié aux cinq prières quotidiennes et à la prière du vendredi dans un environnement paisible et accueillant.</p>
-                </div>
-                <div class="service-card">
-                    <h3>Cours d'arabe</h3>
-                    <p>Des cours d'arabe pour tous les niveaux, de débutant à avancé, animés par des enseignants qualifiés.</p>
-                </div>
-                <div class="service-card">
-                    <h3>Enseignement du Coran</h3>
-                    <p>Apprentissage de la récitation et de la mémorisation du Coran pour les enfants et les adultes.</p>
-                </div>
-                <div class="service-card">
-                    <h3>Événements communautaires</h3>
-                    <p>Organisation de conférences, d'activités sociales et d'événements pour renforcer les liens au sein de la communauté.</p>
-                </div>
-
+            <div class="service-card">
+                <h3 class="lang-fr">Cours d'arabe</h3>
+                <h3 class="lang-en" style="display: none;">Arabic classes</h3>
+                <h3 class="lang-ar" style="display: none;" dir="rtl">دروس اللغة العربية</h3>
+                <h3 class="lang-ur" style="display: none;" dir="rtl">عربی کلاسز</h3>
+                <h3 class="lang-bn" style="display: none;">আরবি ক্লাস</h3>
+                
+                <p class="lang-fr">Des cours d'arabe pour tous les niveaux, de débutant à avancé, animés par des enseignants qualifiés.</p>
+                <p class="lang-en" style="display: none;">Arabic classes for all levels, from beginner to advanced, taught by qualified teachers.</p>
+                <p class="lang-ar" style="display: none;" dir="rtl">دروس اللغة العربية لجميع المستويات، من المبتدئين إلى المتقدمين، يقدمها معلمون مؤهلون.</p>
+                <p class="lang-ur" style="display: none;" dir="rtl">قابل اساتذہ کے ذریعے مبتدی سے لے کر ماہر تک، تمام سطحوں کے لیے عربی کلاسز۔</p>
+                <p class="lang-bn" style="display: none;">যোগ্য শিক্ষকদের দ্বারা পরিচালিত সমস্ত স্তরের জন্য আরবি ক্লাস, নবীন থেকে উন্নত পর্যন্ত।</p>
+            </div>
+            <div class="service-card">
+                <h3 class="lang-fr">Enseignement du Coran</h3>
+                <h3 class="lang-en" style="display: none;">Quran teaching</h3>
+                <h3 class="lang-ar" style="display: none;" dir="rtl">تعليم القرآن</h3>
+                <h3 class="lang-ur" style="display: none;" dir="rtl">قرآن کی تعلیم</h3>
+                <h3 class="lang-bn" style="display: none;">কোরআন শিক্ষা</h3>
+                
+                <p class="lang-fr">Apprentissage de la récitation et de la mémorisation du Coran pour les enfants et les adultes.</p>
+                <p class="lang-en" style="display: none;">Learning recitation and memorization of the Quran for children and adults.</p>
+                <p class="lang-ar" style="display: none;" dir="rtl">تعلم تلاوة وحفظ القرآن للأطفال والكبار.</p>
+                <p class="lang-ur" style="display: none;" dir="rtl">بچوں اور بڑوں کے لیے قرآن کی تلاوت اور حفظ سیکھنا۔</p>
+                <p class="lang-bn" style="display: none;">শিশু ও প্রাপ্তবয়স্কদের জন্য কোরআন তেলাওয়াত ও মুখস্থ শেখা।</p>
+            </div>
+            <div class="service-card">
+                <h3 class="lang-fr">Événements communautaires</h3>
+                <h3 class="lang-en" style="display: none;">Community events</h3>
+                <h3 class="lang-ar" style="display: none;" dir="rtl">الفعاليات المجتمعية</h3>
+                <h3 class="lang-ur" style="display: none;" dir="rtl">کمیونٹی ایونٹس</h3>
+                <h3 class="lang-bn" style="display: none;">সম্প্রদায়ের অনুষ্ঠান</h3>
+                
+                <p class="lang-fr">Organisation de conférences, d'activités sociales et d'événements pour renforcer les liens au sein de la communauté.</p>
+                <p class="lang-en" style="display: none;">Organization of conferences, social activities and events to strengthen ties within the community.</p>
+                <p class="lang-ar" style="display: none;" dir="rtl">تنظيم المؤتمرات والأنشطة الاجتماعية والفعاليات لتعزيز الروابط داخل المجتمع.</p>
+                <p class="lang-ur" style="display: none;" dir="rtl">کمیونٹی کے اندر تعلقات کو مضبوط کرنے کے لیے کانفرنسوں، سماجی سرگرمیوں اور تقریبات کا انعقاد۔</p>
+                <p class="lang-bn" style="display: none;">সম্প্রদায়ের মধ্যে বন্ধন শক্তিশালী করতে সম্মেলন, সামাজিক কার্যক্রম এবং অনুষ্ঠানের আয়োজন করা।</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <section class="donation" id="faire-un-don">
-        <div class="container">
-            <div class="section-heading">
-                <h2>Faire un Don</h2>
-                <p>Participez à la construction de la Mosquée Al Istiqaamah et gagnez une récompense éternelle, inshaa Allah.</p>
+    <div class="container">
+        <div class="section-heading">
+            <h2 class="lang-fr">Faire un Don</h2>
+            <h2 class="lang-en" style="display: none;">Donate</h2>
+            <h2 class="lang-ar" style="display: none;" dir="rtl">تبرع</h2>
+            <h2 class="lang-ur" style="display: none;" dir="rtl">عطیہ دیں</h2>
+            <h2 class="lang-bn" style="display: none;">দান করুন</h2>
+            
+            <p class="lang-fr">Participez à la construction de la Mosquée Al Istiqaamah et gagnez une récompense éternelle, inshaa Allah.</p>
+            <p class="lang-en" style="display: none;">Participate in the construction of the Al Istiqaamah Mosque and earn an eternal reward, inshaa Allah.</p>
+            <p class="lang-ar" style="display: none;" dir="rtl">شارك في بناء مسجد الاستقامة واكسب أجرا أبديا، إن شاء الله.</p>
+            <p class="lang-ur" style="display: none;" dir="rtl">مسجد استقامت کی تعمیر میں حصہ لیں اور دائمی اجر کمائیں، انشاء اللہ۔</p>
+            <p class="lang-bn" style="display: none;">আল ইস্তিক্বামাহ মসজিদ নির্মাণে অংশগ্রহণ করুন এবং চিরন্তন পুরস্কার অর্জন করুন, ইনশা আল্লাহ।</p>
+        </div>
+        <div class="highlighted-text">
+            <p class="lang-fr">Le Prophète ﷺ a dit : « L'aumône cachée éteint la Colère du Seigneur. » (Rapporté par Tabarani et authentifié par Cheikh Albani dans Silsila Sahiha n°1908)</p>
+            <p class="lang-en" style="display: none;">The Prophet ﷺ said: "Secret charity extinguishes the Anger of the Lord." (Reported by Tabarani and authenticated by Sheikh Albani in Silsila Sahiha No. 1908)</p>
+            <p class="lang-ar" style="display: none;" dir="rtl">قال النبي ﷺ: "الصدقة الخفية تطفئ غضب الرب." (رواه الطبراني وصححه الشيخ الألباني في السلسلة الصحيحة رقم 1908)</p>
+            <p class="lang-ur" style="display: none;" dir="rtl">نبی ﷺ نے فرمایا: "خفیہ صدقہ رب کے غضب کو بجھا دیتا ہے۔" (طبرانی نے روایت کیا اور شیخ البانی نے سلسلہ صحیحہ نمبر 1908 میں اس کی تصدیق کی)</p>
+            <p class="lang-bn" style="display: none;">নবী ﷺ বলেছেন: "গোপন দান প্রভুর ক্রোধ নির্বাপিত করে।" (তাবরানী দ্বারা বর্ণিত এবং শায়খ আলবানী দ্বারা সিলসিলা সাহিহা নং ১৯০৮-এ প্রমাণিত)</p>
+        </div>
+        <div class="donation-options">
+            <div class="donation-card">
+                <h3 class="lang-fr">Cagnotte en ligne</h3>
+                <h3 class="lang-en" style="display: none;">Online fundraiser</h3>
+                <h3 class="lang-ar" style="display: none;" dir="rtl">تبرع عبر الإنترنت</h3>
+                <h3 class="lang-ur" style="display: none;" dir="rtl">آن لائن فنڈریزر</h3>
+                <h3 class="lang-bn" style="display: none;">অনলাইন তহবিল সংগ্রহ</h3>
+                
+                <p class="lang-fr">Contribuez directement via notre cagnotte Leetchi, un moyen simple et sécurisé pour soutenir notre projet.</p>
+                <p class="lang-en" style="display: none;">Contribute directly via our Leetchi fundraiser, a simple and secure way to support our project.</p>
+                <p class="lang-ar" style="display: none;" dir="rtl">تبرع مباشرة عبر حملة التبرعات على Leetchi، وهي طريقة بسيطة وآمنة لدعم مشروعنا.</p>
+                <p class="lang-ur" style="display: none;" dir="rtl">ہمارے Leetchi فنڈریزر کے ذریعے براہ راست تعاون کریں، ہمارے منصوبے کی حمایت کرنے کا ایک آسان اور محفوظ طریقہ۔</p>
+                <p class="lang-bn" style="display: none;">আমাদের লিচি ফান্ডরেজারের মাধ্যমে সরাসরি অবদান রাখুন, আমাদের প্রকল্প সমর্থন করার একটি সহজ এবং নিরাপদ উপায়।</p>
+                
+                <a href="https://www.leetchi.com/fr/c/soutenez-louverture-de-la-grande-mosquee-al-istiqaamah-daubervilliers-2057508" class="btn lang-fr" target="_blank">Faire un don sur Leetchi</a>
+                <a href="https://www.leetchi.com/fr/c/soutenez-louverture-de-la-grande-mosquee-al-istiqaamah-daubervilliers-2057508" class="btn lang-en" style="display: none;" target="_blank">Donate on Leetchi</a>
+                <a href="https://www.leetchi.com/fr/c/soutenez-louverture-de-la-grande-mosquee-al-istiqaamah-daubervilliers-2057508" class="btn lang-ar" style="display: none;" dir="rtl" target="_blank">تبرع على Leetchi</a>
+                <a href="https://www.leetchi.com/fr/c/soutenez-louverture-de-la-grande-mosquee-al-istiqaamah-daubervilliers-2057508" class="btn lang-ur" style="display: none;" dir="rtl" target="_blank">Leetchi پر عطیہ دیں</a>
+                <a href="https://www.leetchi.com/fr/c/soutenez-louverture-de-la-grande-mosquee-al-istiqaamah-daubervilliers-2057508" class="btn lang-bn" style="display: none;" target="_blank">লিচিতে দান করুন</a>
             </div>
-            <div class="highlighted-text">
-                <p>Le Prophète ﷺ a dit : « L'aumône cachée éteint la Colère du Seigneur. » (Rapporté par Tabarani et authentifié par Cheikh Albani dans Silsila Sahiha n°1908)</p>
-            </div>
-            <div class="donation-options">
-                <div class="donation-card">
-                    <h3>Cagnotte en ligne</h3>
-                    <p>Contribuez directement via notre cagnotte Leetchi, un moyen simple et sécurisé pour soutenir notre projet.</p>
-                    <a href="https://www.leetchi.com/fr/c/soutenez-louverture-de-la-grande-mosquee-al-istiqaamah-daubervilliers-2057508" class="btn" target="_blank">Faire un don sur Leetchi</a>
-                </div>
-                <div class="donation-card">
-                    <h3>Virement bancaire</h3>
-                    <p>Vous pouvez effectuer un virement directement sur le compte de l'association.</p>
-                    <div class="highlighted-text">
-                        <p>IBAN: FR76 XXXX XXXX XXXX XXXX XXXX XXX</p>
-                        <p>BIC: XXXXXXXX</p>
-                        <p>Titulaire: Association Al Istiqaamah</p>
-                    </div>
-                </div>
-                <div class="donation-card">
-                    <h3>Chèque</h3>
-                    <p>Envoyez votre chèque à l'ordre de "Association Al Istiqaamah" à l'adresse suivante :</p>
-                    <div class="highlighted-text">
-                        <p>Association Al Istiqaamah</p>
-                        <p>XX Rue XXXXX</p>
-                        <p>93300 Aubervilliers</p>
-                    </div>
+            <div class="donation-card">
+                <h3 class="lang-fr">Virement bancaire</h3>
+                <h3 class="lang-en" style="display: none;">Bank transfer</h3>
+                <h3 class="lang-ar" style="display: none;" dir="rtl">تحويل مصرفي</h3>
+                <h3 class="lang-ur" style="display: none;" dir="rtl">بینک ٹرانسفر</h3>
+                <h3 class="lang-bn" style="display: none;">ব্যাংক ট্রান্সফার</h3>
+                
+                <p class="lang-fr">Vous pouvez effectuer un virement directement sur le compte de l'association.</p>
+                <p class="lang-en" style="display: none;">You can make a transfer directly to the association's account.</p>
+                <p class="lang-ar" style="display: none;" dir="rtl">يمكنك إجراء تحويل مباشر إلى حساب الجمعية.</p>
+                <p class="lang-ur" style="display: none;" dir="rtl">آپ براہ راست ایسوسی ایشن کے اکاؤنٹ میں ٹرانسفر کر سکتے ہیں۔</p>
+                <p class="lang-bn" style="display: none;">আপনি সরাসরি সংগঠনের অ্যাকাউন্টে ট্রান্সফার করতে পারেন।</p>
+                
+                <div class="highlighted-text">
+                    <p>IBAN: FR76 XXXX XXXX XXXX XXXX XXXX XXX</p>
+                    <p>BIC: XXXXXXXX</p>
+                    <p class="lang-fr">Titulaire: Association Al Istiqaamah</p>
+                    <p class="lang-en" style="display: none;">Account holder: Association Al Istiqaamah</p>
+                    <p class="lang-ar" style="display: none;" dir="rtl">صاحب الحساب: جمعية الاستقامة</p>
+                    <p class="lang-ur" style="display: none;" dir="rtl">اکاؤنٹ ہولڈر: ایسوسی ایشن استقامت</p>
+                    <p class="lang-bn" style="display: none;">অ্যাকাউন্ট ধারক: অ্যাসোসিয়েশন আল ইস্তিক্বামাহ</p>
                 </div>
             </div>
-            <div class="highlighted-text" style="max-width: 800px; margin: 40px auto 0;">
-                <p>🤲 Chaque don est une sadaqah jariyah (aumône continue) qui vous accompagnera dans l'au-delà, inshaa Allah. Grâce à votre participation, chaque prière accomplie, chaque verset du Coran récité et chaque bienfait réalisé dans cette mosquée seront une source de récompense pour vous, par la volonté d'Allah.</p>
+            <div class="donation-card">
+                <h3 class="lang-fr">Chèque</h3>
+                <h3 class="lang-en" style="display: none;">Check</h3>
+                <h3 class="lang-ar" style="display: none;" dir="rtl">شيك</h3>
+                <h3 class="lang-ur" style="display: none;" dir="rtl">چیک</h3>
+                <h3 class="lang-bn" style="display: none;">চেক</h3>
+                
+                <p class="lang-fr">Envoyez votre chèque à l'ordre de "Association Al Istiqaamah" à l'adresse suivante :</p>
+                <p class="lang-en" style="display: none;">Send your check payable to "Association Al Istiqaamah" to the following address:</p>
+                <p class="lang-ar" style="display: none;" dir="rtl">أرسل شيكك مستحق الدفع لـ "جمعية الاستقامة" على العنوان التالي:</p>
+                <p class="lang-ur" style="display: none;" dir="rtl">اپنا چیک "ایسوسی ایشن استقامت" کے نام پر درج ذیل پتے پر بھیجیں:</p>
+                <p class="lang-bn" style="display: none;">"অ্যাসোসিয়েশন আল ইস্তিক্বামাহ" এর অনুকূলে আপনার চেক নিম্নলিখিত ঠিকানায় পাঠান:</p>
+                
+                <div class="highlighted-text">
+                    <p class="lang-fr">Association Al Istiqaamah</p>
+                    <p class="lang-en" style="display: none;">Association Al Istiqaamah</p>
+                    <p class="lang-ar" style="display: none;" dir="rtl">جمعية الاستقامة</p>
+                    <p class="lang-ur" style="display: none;" dir="rtl">ایسوسی ایشن استقامت</p>
+                    <p class="lang-bn" style="display: none;">অ্যাসোসিয়েশন আল ইস্তিক্বামাহ</p>
+                    <p class="lang-fr">XX Rue XXXXX</p>
+                    <p class="lang-en" style="display: none;">XX XXXXX Street</p>
+                    <p class="lang-ar" style="display: none;" dir="rtl">شارع XXXXX رقم XX</p>
+                    <p class="lang-ur" style="display: none;" dir="rtl">XX سڑک XXXXX</p>
+                    <p class="lang-bn" style="display: none;">XX XXXXX স্ট্রিট</p>
+                    <p>93300 Aubervilliers</p>
+                </div>
             </div>
         </div>
-    </section>
+        <div class="highlighted-text" style="max-width: 800px; margin: 40px auto 0;">
+            <p class="lang-fr">🤲 Chaque don est une sadaqah jariyah (aumône continue) qui vous accompagnera dans l'au-delà, inshaa Allah. Grâce à votre participation, chaque prière accomplie, chaque verset du Coran récité et chaque bienfait réalisé dans cette mosquée seront une source de récompense pour vous, par la volonté d'Allah.</p>
+            <p class="lang-en" style="display: none;">🤲 Each donation is a sadaqah jariyah (continuous charity) that will accompany you in the hereafter, inshaa Allah. Thanks to your participation, every prayer performed, every verse of the Quran recited, and every good deed carried out in this mosque will be a source of reward for you, by the will of Allah.</p>
+            <p class="lang-ar" style="display: none;" dir="rtl">🤲 كل تبرع هو صدقة جارية ستلازمك في الآخرة، إن شاء الله. بفضل مشاركتك، ستكون كل صلاة تؤدى، وكل آية من القرآن تتلى، وكل عمل خير يتم في هذا المسجد مصدرًا للثواب لك، بإذن الله.</p>
+            <p class="lang-ur" style="display: none;" dir="rtl">🤲 ہر عطیہ ایک صدقہ جاریہ (مسلسل صدقہ) ہے جو آخرت میں آپ کے ساتھ ہوگا، انشاء اللہ۔ آپ کی شرکت کی بدولت، اس مسجد میں ادا کی گئی ہر نماز، قرآن کی ہر آیت کی تلاوت، اور ہر نیک عمل آپ کے لیے ثواب کا ذریعہ ہوگا، اللہ کی مرضی سے۔</p>
+            <p class="lang-bn" style="display: none;">🤲 প্রতিটি দান একটি সাদাকা জারিয়া (চলমান দান) যা পরকালে আপনার সাথে থাকবে, ইনশা আল্লাহ। আপনার অংশগ্রহণের কারণে, এই মসজিদে প্রতিটি নামাজ আদায়, কোরআনের প্রতিটি আয়াত তেলাওয়াত এবং প্রতিটি সৎকর্ম আল্লাহর ইচ্ছায় আপনার জন্য পুরস্কারের উৎস হবে।</p>
+        </div>
+    </div>
+</section>
 
     <section class="contact" id="contact">
-        <div class="container">
-            <div class="section-heading">
-                <h2>Contact</h2>
-                <p>N'hésitez pas à nous contacter pour plus d'informations sur notre projet.</p>
-            </div>
-            <div class="contact-container">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div>
-                            <h3>Adresse</h3>
-                            <p>XX Rue XXXXX, 93300 Aubervilliers</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div>
-                            <h3>Téléphone</h3>
-                            <p>+33 X XX XX XX XX</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div>
-                            <h3>Email</h3>
-                            <p>alistiqaamah@gmail.com</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div>
-                            <h3>Horaires</h3>
-                            <p>Du lundi au dimanche: Selon les horaires des prières</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="contact-form">
-                    <form name="contact" netlify>
-                        <div class="form-group">
-                            <label for="name">Nom</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">Sujet</label>
-                            <input type="text" id="subject" name="subject" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" required></textarea>
-                        </div>
-                        <button type="submit" class="btn">Envoyer</button>
-                    </form>
-                    <!-- Ce formulaire est configuré pour fonctionner avec Netlify Forms -->
-                </div>
-            </div>
+    <div class="container">
+        <div class="section-heading">
+            <h2 class="lang-fr">Contact</h2>
+            <h2 class="lang-en" style="display: none;">Contact</h2>
+            <h2 class="lang-ar" style="display: none;" dir="rtl">اتصل بنا</h2>
+            <h2 class="lang-ur" style="display: none;" dir="rtl">رابطہ</h2>
+            <h2 class="lang-bn" style="display: none;">যোগাযোগ</h2>
+            
+            <p class="lang-fr">N'hésitez pas à nous contacter pour plus d'informations sur notre projet.</p>
+            <p class="lang-en" style="display: none;">Feel free to contact us for more information about our project.</p>
+            <p class="lang-ar" style="display: none;" dir="rtl">لا تتردد في الاتصال بنا للحصول على مزيد من المعلومات حول مشروعنا.</p>
+            <p class="lang-ur" style="display: none;" dir="rtl">ہمارے منصوبے کے بارے میں مزید معلومات کے لیے ہم سے رابطہ کرنے میں تردد نہ کریں۔</p>
+            <p class="lang-bn" style="display: none;">আমাদের প্রকল্প সম্পর্কে আরও তথ্যের জন্য আমাদের সাথে যোগাযোগ করতে দ্বিধা করবেন না।</p>
         </div>
-    </section>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div>
+                        <h3 class="lang-fr">Adresse</h3>
+                        <h3 class="lang-en" style="display: none;">Address</h3>
+                        <h3 class="lang-ar" style="display: none;" dir="rtl">العنوان</h3>
+                        <h3 class="lang-ur" style="display: none;" dir="rtl">پتہ</h3>
+                        <h3 class="lang-bn" style="display: none;">ঠিকানা</h3>
+                        <p class="lang-fr">XX Rue XXXXX, 93300 Aubervilliers</p>
+                        <p class="lang-en" style="display: none;">XX XXXXX Street, 93300 Aubervilliers</p>
+                        <p class="lang-ar" style="display: none;" dir="rtl">شارع XXXXX رقم XX، 93300 أوبرفيلييه</p>
+                        <p class="lang-ur" style="display: none;" dir="rtl">XX سڑک XXXXX، 93300 آبرویلیے</p>
+                        <p class="lang-bn" style="display: none;">XX XXXXX স্ট্রিট, ৯৩৩০০ অবারভিলিয়ার্স</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div>
+                        <h3 class="lang-fr">Téléphone</h3>
+                        <h3 class="lang-en" style="display: none;">Phone</h3>
+                        <h3 class="lang-ar" style="display: none;" dir="rtl">الهاتف</h3>
+                        <h3 class="lang-ur" style="display: none;" dir="rtl">فون</h3>
+                        <h3 class="lang-bn" style="display: none;">ফোন</h3>
+                        <p>+33 X XX XX XX XX</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div>
+                        <h3 class="lang-fr">Email</h3>
+                        <h3 class="lang-en" style="display: none;">Email</h3>
+                        <h3 class="lang-ar" style="display: none;" dir="rtl">البريد الإلكتروني</h3>
+                        <h3 class="lang-ur" style="display: none;" dir="rtl">ای میل</h3>
+                        <h3 class="lang-bn" style="display: none;">ইমেইল</h3>
+                        <p>alistiqaamah@gmail.com</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+		<div>
+			<h3 class="lang-fr">Horaires</h3>
+			<h3 class="lang-en" style="display: none;">Hours</h3>
+			<h3 class="lang-ar" style="display: none;" dir="rtl">ساعات العمل</h3>
+			<h3 class="lang-ur" style="display: none;" dir="rtl">اوقات کار</h3>
+			<h3 class="lang-bn" style="display: none;">সময়সূচী</h3>
+			<p class="lang-fr">Du lundi au dimanche: Selon les horaires des prières</p>
+			<p class="lang-en" style="display: none;">Monday to Sunday: According to prayer times</p>
+			<p class="lang-ar" style="display: none;" dir="rtl">من الاثنين إلى الأحد: حسب أوقات الصلاة</p>
+			<p class="lang-ur" style="display: none;" dir="rtl">پیر سے اتوار: نماز کے اوقات کے مطابق</p>
+			<p class="lang-bn" style="display: none;">সোমবার থেকে রবিবার: নামাজের সময় অনুসারে</p>
+		</div>
+	</div>
+	</div>
+	<div class="contact-form">
+		<form name="contact" netlify>
+			<div class="form-group">
+				<label class="lang-fr" for="name">Nom</label>
+				<label class="lang-en" style="display: none;" for="name">Name</label>
+				<label class="lang-ar" style="display: none;" dir="rtl" for="name">الاسم</label>
+				<label class="lang-ur" style="display: none;" dir="rtl" for="name">نام</label>
+				<label class="lang-bn" style="display: none;" for="name">নাম</label>
+				<input type="text" id="name" name="name" required>
+			</div>
+			<div class="form-group">
+				<label class="lang-fr" for="email">Email</label>
+				<label class="lang-en" style="display: none;" for="email">Email</label>
+				<label class="lang-ar" style="display: none;" dir="rtl" for="email">البريد الإلكتروني</label>
+				<label class="lang-ur" style="display: none;" dir="rtl" for="email">ای میل</label>
+				<label class="lang-bn" style="display: none;" for="email">ইমেইল</label>
+				<input type="email" id="email" name="email" required>
+			</div>
+			<div class="form-group">
+				<label class="lang-fr" for="subject">Sujet</label>
+				<label class="lang-en" style="display: none;" for="subject">Subject</label>
+				<label class="lang-ar" style="display: none;" dir="rtl" for="subject">الموضوع</label>
+				<label class="lang-ur" style="display: none;" dir="rtl" for="subject">موضوع</label>
+				<label class="lang-bn" style="display: none;" for="subject">বিষয়</label>
+				<input type="text" id="subject" name="subject" required>
+			</div>
+			<div class="form-group">
+				<label class="lang-fr" for="message">Message</label>
+				<label class="lang-en" style="display: none;" for="message">Message</label>
+				<label class="lang-ar" style="display: none;" dir="rtl" for="message">الرسالة</label>
+				<label class="lang-ur" style="display: none;" dir="rtl" for="message">پیغام</label>
+				<label class="lang-bn" style="display: none;" for="message">বার্তা</label>
+				<textarea id="message" name="message" required></textarea>
+			</div>
+			<button type="submit" class="btn lang-fr">Envoyer</button>
+			<button type="submit" class="btn lang-en" style="display: none;">Send</button>
+			<button type="submit" class="btn lang-ar" style="display: none;" dir="rtl">إرسال</button>
+			<button type="submit" class="btn lang-ur" style="display: none;" dir="rtl">بھیجیں</button>
+			<button type="submit" class="btn lang-bn" style="display: none;">পাঠান</button>
+		</form>
+	</div>
+	</div>
+	</div>
+</section>
 
-    <footer>
-        <div class="container">
-            <div class="footer-links">
-                <a href="#accueil">Accueil</a>
-                <a href="#projet">Le Projet</a>
-                <a href="#services">Services</a>
-                <a href="#faire-un-don">Faire un don</a>
-                <a href="#contact">Contact</a>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2025 Mosquée Al Istiqaamah - Tous droits réservés</p>
-                <p>بارك الله فيكم - Qu'Allah vous bénisse</p>
-            </div>
+   <footer>
+    <div class="container">
+        <div class="footer-links">
+            <a href="#accueil" class="lang-fr">Accueil</a>
+            <a href="#accueil" class="lang-en" style="display: none;">Home</a>
+            <a href="#accueil" class="lang-ar" style="display: none;" dir="rtl">الرئيسية</a>
+            <a href="#accueil" class="lang-ur" style="display: none;" dir="rtl">ہوم</a>
+            <a href="#accueil" class="lang-bn" style="display: none;">হোম</a>
+            
+            <a href="#projet" class="lang-fr">Le Projet</a>
+            <a href="#projet" class="lang-en" style="display: none;">The Project</a>
+            <a href="#projet" class="lang-ar" style="display: none;" dir="rtl">المشروع</a>
+            <a href="#projet" class="lang-ur" style="display: none;" dir="rtl">منصوبہ</a>
+            <a href="#projet" class="lang-bn" style="display: none;">প্রকল্প</a>
+            
+            <a href="#services" class="lang-fr">Services</a>
+            <a href="#services" class="lang-en" style="display: none;">Services</a>
+            <a href="#services" class="lang-ar" style="display: none;" dir="rtl">الخدمات</a>
+            <a href="#services" class="lang-ur" style="display: none;" dir="rtl">خدمات</a>
+            <a href="#services" class="lang-bn" style="display: none;">সেবাসমূহ</a>
+            
+            <a href="#faire-un-don" class="lang-fr">Faire un don</a>
+            <a href="#faire-un-don" class="lang-en" style="display: none;">Donate</a>
+            <a href="#faire-un-don" class="lang-ar" style="display: none;" dir="rtl">تبرع</a>
+            <a href="#faire-un-don" class="lang-ur" style="display: none;" dir="rtl">عطیہ دیں</a>
+            <a href="#faire-un-don" class="lang-bn" style="display: none;">দান করুন</a>
+            
+            <a href="#contact" class="lang-fr">Contact</a>
+            <a href="#contact" class="lang-en" style="display: none;">Contact</a>
+            <a href="#contact" class="lang-ar" style="display: none;" dir="rtl">اتصل بنا</a>
+            <a href="#contact" class="lang-ur" style="display: none;" dir="rtl">رابطہ</a>
+            <a href="#contact" class="lang-bn" style="display: none;">যোগাযোগ</a>
         </div>
-    </footer>
+        <div class="copyright">
+            <p class="lang-fr">&copy; 2025 Mosquée Al Istiqaamah - Tous droits réservés</p>
+            <p class="lang-en" style="display: none;">&copy; 2025 Al Istiqaamah Mosque - All rights reserved</p>
+            <p class="lang-ar" style="display: none;" dir="rtl">&copy; 2025 مسجد الاستقامة - جميع الحقوق محفوظة</p>
+            <p class="lang-ur" style="display: none;" dir="rtl">&copy; 2025 مسجد استقامت - جملہ حقوق محفوظ ہیں</p>
+            <p class="lang-bn" style="display: none;">&copy; 2025 আল ইস্তিক্বামাহ মসজিদ - সর্বস্বত্ব সংরক্ষিত</p>
+            
+            <p class="lang-fr">بارك الله فيكم - Qu'Allah vous bénisse</p>
+            <p class="lang-en" style="display: none;">بارك الله فيكم - May Allah bless you</p>
+            <p class="lang-ar" style="display: none;" dir="rtl">بارك الله فيكم</p>
+            <p class="lang-ur" style="display: none;" dir="rtl">اللہ آپ کو برکت دے - بارك الله فيكم</p>
+            <p class="lang-bn" style="display: none;">আল্লাহ আপনাকে বরকত দিন - بارك الله فيكم</p>
+        </div>
+    </div>
+</footer>
+
+    <!-- Script pour le changement de langue -->
+    <script>
+    function changeLanguage(lang) {
+        // Masquer tous les éléments de langue
+        const allLangElements = document.querySelectorAll('[class*="lang-"]');
+        allLangElements.forEach(el => {
+            if (el.classList.contains(`lang-${lang}`)) {
+                el.style.display = '';
+            } else if (el.classList.contains(`lang-fr`) || el.classList.contains(`lang-en`) || el.classList.contains(`lang-ar`) || el.classList.contains(`lang-ur`) || el.classList.contains(`lang-bn`)) {
+                el.style.display = 'none';
+            }
+        });
+        
+        // Mettre à jour les boutons de langue
+        const langButtons = document.querySelectorAll('.language-btn');
+        langButtons.forEach(btn => {
+            btn.classList.remove('active');
+        });
+        document.querySelector(`.language-btn[onclick*="${lang}"]`).classList.add('active');
+        
+        // Changer la direction du document pour l'arabe et l'ourdou
+        if (lang === 'ar' || lang === 'ur') {
+            document.querySelector('html').setAttribute('dir', 'rtl');
+        } else {
+            document.querySelector('html').setAttribute('dir', 'ltr');
+        }
+    }
+</script>
 </body>
 </html>

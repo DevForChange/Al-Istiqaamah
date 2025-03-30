@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mosquée Al Istiqaamah - Aubervilliers</title>
+    <style>
+        :root {
+            --primary-color: #116466;
+            --secondary-color: #2C3531;
+            --accent-color: #D9B08C;
+            --light-color: #FFCB9A;
+            --text-color: #2C3531;
+            --white: #fff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 60px;
+            margin-right: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav li {
+            margin-left: 30px;
+        }
+        
+        nav a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--primary-color);
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/mosque-background.jpg') no-repeat center center/cover;
+            color: var(--white);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            padding-top: 80px;
+        }
+        
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #0a4b4c;
+        }
+        
+        /* About Section */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-heading {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-heading h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .section-heading p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Project Details */
+        .project-details {
+            background-color: #f9f9f9;
+        }
+        
+        .stats-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .stat-box {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            flex: 1;
+            min-width: 200px;
+            max-width: 250px;
+        }
+        
+        .stat-box h3 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .stat-box p {
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+        }
+        
+        /* Donation Section */
+        .donation-options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .donation-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            flex: 1;
+            min-width: 300px;
+            max-width: 400px;
+        }
+        
+        .donation-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .donation-card p {
+            margin-bottom: 20px;
+        }
+        
+        .highlighted-text {
+            background-color: #f0f7f7;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        
+        /* Services Section */
+        .services {
+            background-color: #f9f9f9;
+        }
+        
+        .services-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            flex: 1;
+            min-width: 250px;
+            max-width: 350px;
+            transition: transform 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin: 15px 0;
+        }
+        
+        /* Progress Bar */
+        .progress-container {
+            margin: 40px auto;
+            max-width: 800px;
+        }
+        
+        .progress-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .progress-bar {
+            height: 30px;
+            background-color: #e0e0e0;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            width: 5%; /* Update this based on actual progress */
+            background-color: var(--primary-color);
+            border-radius: 15px;
+        }
+        
+        /* Contact Section */
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+        }
+        
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .contact-item {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        
+        .contact-item i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-right: 15px;
+        }
+        
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .form-group textarea {
+            height: 150px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 50px 0 20px;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                justify-content: center;
+            }
+            
+            nav li {
+                margin: 0 10px;
+            }
+            
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .section-heading h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container nav-container">
+            <div class="logo">
+                <img src="images/logo.jpg" alt="Logo Mosquée Al Istiqaamah">
+                <h1>Mosquée Al Istiqaamah</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="#projet">Le Projet</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#faire-un-don">Faire un don</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="accueil">
+        <div class="container">
+            <h2>Mosquée Al Istiqaamah</h2>
+            <p>Aidez-nous à construire la grande mosquée et institut d'Aubervilliers, un lieu de prière, d'apprentissage et de rassemblement pour notre communauté.</p>
+            <a href="#faire-un-don" class="btn">Faire un don</a>
+        </div>
+    </section>
+
+    <section class="about" id="projet">
+        <div class="container">
+            <div class="section-heading">
+                <h2>Notre Projet</h2>
+                <p>Bâtir un lieu qui reflète les valeurs de l'Islam : bienveillance, solidarité et fraternité.</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>À l'occasion de l'ouverture de la nouvelle grande mosquée et de son institut à Aubervilliers, nous avons à cœur de vous offrir un lieu de prière, d'apprentissage et de rassemblement à la hauteur de vos attentes et de vos besoins.</p>
+                    <p>L'aménagement des locaux nécessite des fonds afin de les rendre plus accueillants, fonctionnels et adaptés à la pratique de notre foi. Votre contribution, qu'elle soit grande ou modeste, jouera un rôle essentiel dans le développement des infrastructures de la mosquée et de l'institut.</p>
+                    <p>Votre générosité contribuera également à faciliter l'organisation d'événements et d'activités bénéfiques à toute la communauté.</p>
+                </div>
+                <div class="about-image">
+                    <div style="background-color: #f5f5f5; border-radius: 10px; padding: 30px; text-align: center; height: 100%;">
+                        <h3 style="margin-bottom: 20px; color: var(--primary-color);">Notre Future Mosquée</h3>
+                        <p>Le projet de la mosquée Al Istiqaamah est actuellement en phase de collecte de fonds pour l'acquisition d'un local. Des images et rendus 3D seront disponibles une fois le local acquis.</p>
+                        <p style="margin-top: 20px; font-style: italic;">Participez à notre projet et devenez acteur de cette œuvre pieuse !</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-details">
+        <div class="container">
+            <div class="section-heading">
+                <h2>Détails du Projet</h2>
+                <p>Ensemble, nous pouvons réaliser ce projet ambitieux pour notre communauté.</p>
+            </div>
+            <div class="stats-container">
+                <div class="stat-box">
+                    <h3>5711 m²</h3>
+                    <p>Superficie totale</p>
+                </div>
+                <div class="stat-box">
+                    <h3>160 €</h3>
+                    <p>Coût par m²</p>
+                </div>
+                <div class="stat-box">
+                    <h3>913 760 €</h3>
+                    <p>Coût d'achat du local</p>
+                </div>
+                <div class="stat-box">
+                    <h3>2,5 M €</h3>
+                    <p>Coût total avec aménagements</p>
+                </div>
+            </div>
+            <div class="progress-container">
+                <div class="progress-stats">
+                    <span>Fonds collectés : 832 €</span>
+                    <span>Objectif : 2 500 000 €</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 0.033%;"></div>
+                </div>
+            </div>
+            <div class="highlighted-text">
+                <p>Le Prophète ﷺ a dit : « Celui qui construit une mosquée dans laquelle on fait le rappel du nom d'Allah, Allah lui construit une maison au Paradis. » (Rapporté par Ibn Maja dans ses Sounan n°735 et authentifié par Cheikh Albani)</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-heading">
+                <h2>Nos Services</h2>
+                <p>La mosquée Al Istiqaamah offrira divers services pour répondre aux besoins de notre communauté.</p>
+            </div>
+            <div class="services-container">
+                <div class="service-card">
+                    <h3>Prières quotidiennes</h3>
+                    <p>Un espace dédié aux cinq prières quotidiennes et à la prière du vendredi dans un environnement paisible et accueillant.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Cours d'arabe</h3>
+                    <p>Des cours d'arabe pour tous les niveaux, de débutant à avancé, animés par des enseignants qualifiés.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Enseignement du Coran</h3>
+                    <p>Apprentissage de la récitation et de la mémorisation du Coran pour les enfants et les adultes.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Événements communautaires</h3>
+                    <p>Organisation de conférences, d'activités sociales et d'événements pour renforcer les liens au sein de la communauté.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="donation" id="faire-un-don">
+        <div class="container">
+            <div class="section-heading">
+                <h2>Faire un Don</h2>
+                <p>Participez à la construction de la Mosquée Al Istiqaamah et gagnez une récompense éternelle, inshaa Allah.</p>
+            </div>
+            <div class="highlighted-text">
+                <p>Le Prophète ﷺ a dit : « L'aumône cachée éteint la Colère du Seigneur. » (Rapporté par Tabarani et authentifié par Cheikh Albani dans Silsila Sahiha n°1908)</p>
+            </div>
+            <div class="donation-options">
+                <div class="donation-card">
+                    <h3>Cagnotte en ligne</h3>
+                    <p>Contribuez directement via notre cagnotte Leetchi, un moyen simple et sécurisé pour soutenir notre projet.</p>
+                    <a href="https://www.leetchi.com/fr/c/soutenez-louverture-de-la-grande-mosquee-al-istiqaamah-daubervilliers-2057508" class="btn" target="_blank">Faire un don sur Leetchi</a>
+                </div>
+                <div class="donation-card">
+                    <h3>Virement bancaire</h3>
+                    <p>Vous pouvez effectuer un virement directement sur le compte de l'association.</p>
+                    <div class="highlighted-text">
+                        <p>IBAN: FR76 XXXX XXXX XXXX XXXX XXXX XXX</p>
+                        <p>BIC: XXXXXXXX</p>
+                        <p>Titulaire: Association Al Istiqaamah</p>
+                    </div>
+                </div>
+                <div class="donation-card">
+                    <h3>Chèque</h3>
+                    <p>Envoyez votre chèque à l'ordre de "Association Al Istiqaamah" à l'adresse suivante :</p>
+                    <div class="highlighted-text">
+                        <p>Association Al Istiqaamah</p>
+                        <p>XX Rue XXXXX</p>
+                        <p>93300 Aubervilliers</p>
+                    </div>
+                </div>
+            </div>
+            <div class="highlighted-text" style="max-width: 800px; margin: 40px auto 0;">
+                <p>🤲 Chaque don est une sadaqah jariyah (aumône continue) qui vous accompagnera dans l'au-delà, inshaa Allah. Grâce à votre participation, chaque prière accomplie, chaque verset du Coran récité et chaque bienfait réalisé dans cette mosquée seront une source de récompense pour vous, par la volonté d'Allah.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-heading">
+                <h2>Contact</h2>
+                <p>N'hésitez pas à nous contacter pour plus d'informations sur notre projet.</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div>
+                            <h3>Adresse</h3>
+                            <p>XX Rue XXXXX, 93300 Aubervilliers</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div>
+                            <h3>Téléphone</h3>
+                            <p>+33 X XX XX XX XX</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div>
+                            <h3>Email</h3>
+                            <p>alistiqaamah@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div>
+                            <h3>Horaires</h3>
+                            <p>Du lundi au dimanche: Selon les horaires des prières</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form name="contact" netlify>
+                        <div class="form-group">
+                            <label for="name">Nom</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Sujet</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Envoyer</button>
+                    </form>
+                    <!-- Ce formulaire est configuré pour fonctionner avec Netlify Forms -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#accueil">Accueil</a>
+                <a href="#projet">Le Projet</a>
+                <a href="#services">Services</a>
+                <a href="#faire-un-don">Faire un don</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Mosquée Al Istiqaamah - Tous droits réservés</p>
+                <p>بارك الله فيكم - Qu'Allah vous bénisse</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
